@@ -1,36 +1,29 @@
-import React, { Component,Fragment } from 'react';
-import Chirps from './Chirps';
+import React, { Fragment } from 'react';
+import Chirp from './Chirps';
 
 
-class ChirpList extends Component {
-    constructor(props){
-        super(props);
-    }
+const ChirpList = (props) => {
 
 
+    const chirps = props.chirps;
 
-
-
-    render() {
-        const items= this.props.items;
-        
-        const chirps = items.map((chirp,index) =>{
-            return(
-                <Chirps items={chirp} key={index}/>
-            );
-        });
-
+    const chirpItems = chirps.map((chirp) => {
         return (
-            
-            <Fragment>
-                 <ul className="list-group list-group-flush">
-                  {chirps}
-                </ul> 
-            
-            </Fragment>
-
+            <Chirp chirp={chirp} key={chirp.time} />
         );
-    }
+    });
+
+    return (
+
+        <Fragment>
+            <ul className="list-group list-group-flush">
+                {chirpItems}
+            </ul>
+
+        </Fragment>
+
+    );
 }
+
 
 export default ChirpList;
