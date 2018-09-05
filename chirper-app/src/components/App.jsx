@@ -7,12 +7,13 @@ class App extends Component {
       super(props);
     }
   render() {
+   
     return (
       <div className="container">
         <header>
           <h1 className="text-center">Welcome to Chirper !</h1>
         </header>
-         <ChirpsFeed items={this.props.items} />      
+         <ChirpsFeed />      
       </div>
       
     );
