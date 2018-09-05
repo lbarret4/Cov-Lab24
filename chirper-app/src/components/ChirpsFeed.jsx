@@ -1,66 +1,96 @@
 import React, { Component } from 'react';
-import Chirps from './Chirps'
 import ChirpList from './ChirpList';
 
 
 
 class ChirpsFeed extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state= {
-            chirpList:[],
-            chirpPost:" ",
+        this.state = {
+            chirpList: [],
+            chirpUser: "Charles",
+            chirpContent: ""
+
         }
         this.handlesNewChirp = this.handlesNewChirp.bind(this);
         this.handlesPost = this.handlesPost.bind(this);
     }
 
-    componentDidMount(){
+    componentDidMount() {
+        const chirp = [
+            {
+                time: new Date(2018, 7, 27, 7, 0),
+                user: "Taomgirl",
+                content: "I woke up really early this morning"
+            },
+            {
+                time: new Date(2018, 7, 28, 7, 11),
+                user: "Divi",
+                content: "Somewhere over the rainbow"
+            },
+            {
+                time: new Date(2018, 7, 29, 23, 0),
+                user: "Bobby Z",
+                content: "Who ate my cheese?"
+            }
+
+        ]
+
         this.setState({
-                 chirpList:[
-                'Cras justo odio',
-                'Dapibus ac facilisis in',
-                'Vestibulum at eros',
-            ]
+            chirpList: chirp
+
+
         })
     }
 
-    handlesNewChirp(e){
+    handlesNewChirp(e) {
         this.setState({
-            chirpPost:e.target.value
+            chirpContent: e.target.value
+
         });
 
     }
 
-    handlesPost(e){
+    handlesPost(e) {
         e.preventDefault();
-        let oddList = this.state.chirpList;
-        oddList.unshift(this.state.chirpPost);
-        this.setState({
-            chirpList:oddList,
-            chirpPost:""
-        })
+        if (this.state.chirpContent.length > 0) {
+            let oddList = this.state.chirpList;
+            oddList.unshift(
+                {
+                    time: new Date(Date.now()),
+                    user: this.state.chirpUser,
+                    content: this.state.chirpContent
+                }
+            );
+            this.setState({
+                chirpList: oddList,
+                chirpContent: ""
+            })
+
+
+        } else {
+            return alert("\t\t\tEmpty Chirp:\n\nAdd a message before posting Chirps!")
+        }
 
     }
 
     render() {
-        
+
         return (
             <div className="card mt-5" style={{ maxWidth: " 90vw" }} >
+
                 <div className="card-header">
                     To get started, type a message and post a chirp.
                 </div>
                 <div className="input-group">
-                    <textarea className="form-control"onChange={this.handlesNewChirp} value={this.state.chirpPost} / >
-                        
+                    <textarea className="form-control" required onChange={this.handlesNewChirp} value={this.state.chirpContent} />
                     <div className="input-group-append">
-                    <button type="button" className=" btn btn-primary" onClick= {this.handlesPost} >Post</button>
+                        <button type="button" className=" btn btn-primary" onClick={this.handlesPost} >Post</button>
                     </div>
                 </div>
-                <ChirpList items={this.state.chirpList} />
 
-
+                <ChirpList chirps={this.state.chirpList} />
 
             </div>
 
