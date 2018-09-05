@@ -3,13 +3,16 @@ import ChirpsFeed from './ChirpsFeed';
 
 
 class App extends Component {
+    constructor(props){
+      super(props);
+    }
   render() {
     return (
       <div className="container">
         <header>
           <h1 className="text-center">Welcome to Chirper !</h1>
         </header>
-        <ChirpsFeed />      
+         <ChirpsFeed items={this.props.items} />      
       </div>
       
     );

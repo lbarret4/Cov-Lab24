@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
+import Chirps from './Chirps'
+
+
 
 class ChirpsFeed extends Component {
 
+    constructor(props){
+        super(props);
+
+    }
 
 
 
@@ -11,22 +18,8 @@ class ChirpsFeed extends Component {
                 <div className="card-header">
                     To get started, type a message and post a chirp.
                 </div>
-                <div className="input-group">
-                    <textarea className="form-control" ></textarea>
-                    <div className="input-group-append">
-                    <button type="button" className=" btn btn-primary">Post</button>
-                    </div>
-                </div>
 
-                {/* <div className="card-body text-center">
-                    <a href="" className="btn btn-primary">Post</a>
-                </div> */}
-                <ul className="list-group list-group-flush">
-                    <li className="list-group-item">Cras justo odio</li>
-                    <li className="list-group-item">Dapibus ac facilisis in</li>
-                    <li className="list-group-item">Vestibulum at eros</li>
-                </ul>
-
+                <Chirps items={this.props.items} />
 
 
 
