@@ -1,24 +1,28 @@
-import React, { Component,Fragment } from 'react';
-import ChirpList from './ChirpList';
+import React, { Fragment } from 'react';
 
 
-class Chirps extends Component{
 
-    constructor(props){
-        super(props)
-        
+const Chirp = (props) => {
+
+    let chirp = props.chirp;
+    let timeStyle = {
+        position: "relative",
+        bottom: "1em"
     }
+    return (
+        <Fragment>
+            <li className="list-group-item ">
+                <small className="d-block" style={timeStyle}>
+                    {chirp.user} on {chirp.time.toLocaleString()}
+                </small>
+                <span className="ml-5">{chirp.content}</span>
+            </li>
 
-    render(){
-        return(
-            <Fragment>
-              <li className="list-group-item ">{this.props.items}</li>
-            
-            </Fragment>
-        );
-    }
+        </Fragment>
+    );
+
 
 
 }
 
-export default Chirps;
+export default Chirp;
