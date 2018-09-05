@@ -1,4 +1,5 @@
 import React, { Component,Fragment } from 'react';
+import Chirps from './Chirps';
 
 
 class ChirpList extends Component {
@@ -13,9 +14,9 @@ class ChirpList extends Component {
     render() {
         const items= this.props.items;
         
-        const chirps = items.map((chirp) =>{
+        const chirps = items.map((chirp,index) =>{
             return(
-                <li className="list-group-item ">{chirp}</li>
+                <Chirps items={chirp} key={index}/>
             );
         });
 
